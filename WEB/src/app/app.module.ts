@@ -7,6 +7,8 @@ import { HeaderComponent } from './header/header.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { MainComponent } from './main/main.component';
 import { FooterComponent } from './footer/footer.component';
+import { LoginComponent } from './login/login.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -14,11 +16,16 @@ import { FooterComponent } from './footer/footer.component';
     HeaderComponent,
     SideBarComponent,
     MainComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RouterModule.forRoot([
+      {path: 'login', component: LoginComponent},
+      {path: '', component: MainComponent}
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]

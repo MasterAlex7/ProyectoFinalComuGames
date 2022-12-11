@@ -14,4 +14,10 @@ export class AuthService {
     const params = JSON.stringify({strUsername: strUsername, strPassword: strPassword});
     return this.http.post(API_LOGIN, params, {headers: httpHeaders});
   }
+
+  registrar(strUsername: string, strPassword: string) {
+    const httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
+    const params = JSON.stringify({strUsername: strUsername, strPassword: strPassword});
+    return this.http.post(API_REGISTER, params, {headers: httpHeaders});
+  }
 }
