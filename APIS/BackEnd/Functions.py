@@ -1,9 +1,7 @@
-from cmath import e
-from hashlib import new
-import sre_compile
-from flask import Flask, jsonify, request, Response
+from flask import Flask, jsonify, request, Response,json
 import BackEnd.GlobalInfo.IOTKeys as globalKeys
 import BackEnd.GlobalInfo.ResponseMessages as globalMessages
+from bson import json_util
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from datetime import datetime
@@ -56,6 +54,34 @@ def CMRegister(strUsername, strPassword):
         objResponse = globalMessages.succ200.copy()
         return objResponse
 
+    except Exception as e:
+        raise e
+        return globalMessages.err500
+
+def CMNuevaPubli(strTPubli, strTitulo, strContenido, strUser, strFechaPubli):
+    try:
+        jsquery={
+            'strTPubli': strTPubli,
+            'strTitulo': strTitulo,
+            'strContenido': strContenido,
+            'strUser': strUser,
+            'strFechaPubli': strFechaPubli
+        }
+        id=dbConnLocal.clPublicaciones.insert_one(jsquery)
+        Response = {
+            'id': str(id.inserted_id)
+        }
+        return Response
+    except Exception as e:
+        raise e
+        return globalMessages.err500
+
+def CMGetPubli():
+    try:
+        jsnQuery = {}
+        data = dbConnLocal.clPublicaciones.find(jsnQuery)
+        response = json_util.dumps(data)
+        return Response(response, mimetype="application/json")
     except Exception as e:
         raise e
         return globalMessages.err500

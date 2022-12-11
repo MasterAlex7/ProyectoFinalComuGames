@@ -47,5 +47,26 @@ def CMRegister():
     except Exception:
         return jsonify(globalMessages.err500)
 
+@app.route('/api/CGNuevaPubli', methods=['POST'])
+def CMNuevaPubli():
+    try:
+        strTPubli = request.json['strTPubli']
+        strTitulo = request.json['strTitulo']
+        strContenido = request.json['strContenido']
+        strUser = request.json['strUser']
+        strFechaPubli = request.json['strFechaPubli']
+        objectResult = callMethod.CMNuevaPubli(strTPubli, strTitulo, strContenido, strUser, strFechaPubli)
+        return objectResult
+    except Exception:
+        return jsonify(globalMessages.err500)
+
+@app.route('/api/CGGetPubli', methods=['GET'])
+def CMGetPubli():
+    try:
+        objectResult = callMethod.CMGetPubli()
+        return objectResult
+    except Exception:
+        return jsonify(globalMessages.err500)
+
 if __name__ == '__main__':
     app.run(debug=True, port=9000, host="0.0.0.0", threaded=True)
