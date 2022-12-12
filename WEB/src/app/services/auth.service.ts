@@ -6,8 +6,7 @@ import { API, API_LOGIN, API_REGISTER } from './../config/config';
   providedIn: 'root'
 })
 export class AuthService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   login(strUsername: string, strPassword: string) {
     const httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,16 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authservice : AuthService) { }
 
   ngOnInit(): void {
     
-    var strPassword = document.getElementById("Contraseña");
     var btnLogin = document.getElementById("btnLogin");
-
+    var servicio = <AuthService>this.authservice;
     btnLogin!!.addEventListener("click", function() {
-      var strUsername = document.getElementById("NombreUsuario");
-      console.log(strUsername!!.textContent);
+      var strPassword = (<HTMLInputElement>document.getElementById("Contraseña"));
+      var strUsername = (<HTMLInputElement>document.getElementById("NombreUsuario"));
+      servicio.login(strUsername.value, strPassword.value).subscribe((data: any) => {
+        console.log(data);
+      });
     });
   }
 

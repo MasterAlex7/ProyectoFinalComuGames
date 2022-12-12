@@ -9,6 +9,8 @@ import { MainComponent } from './main/main.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
+import { RegistrarComponent } from './registrar/registrar.component';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -17,17 +19,19 @@ import { RouterModule } from '@angular/router';
     SideBarComponent,
     MainComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    RegistrarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot([
       {path: 'login', component: LoginComponent},
+      {path: 'registrar', component: RegistrarComponent},
       {path: '', component: MainComponent}
     ])
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
