@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request, Response,json
+import requests
 import BackEnd.GlobalInfo.IOTKeys as globalKeys
 import BackEnd.GlobalInfo.ResponseMessages as globalMessages
 from bson import json_util
@@ -57,6 +58,10 @@ def CMRegister(strUsername, strPassword):
     except Exception as e:
         raise e
         return globalMessages.err500
+
+def prueba():
+    resp=requests.get('http://25.7.25.157:9000/prueba')
+    return resp.json()
 
 def CMNuevaPubli(strTPubli, strTitulo, strContenido, strUser, strFechaPubli):
     try:

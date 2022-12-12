@@ -68,5 +68,13 @@ def CMGetPubli():
     except Exception:
         return jsonify(globalMessages.err500)
 
+@app.route('/prueba',methods=['GET'])
+def pruebaget():
+    try:
+        objectResult = callMethod.prueba()
+        return jsonify(objectResult)
+    except Exception:
+        return {"Error":"No entro a prueba"}
+
 if __name__ == '__main__':
     app.run(debug=True, port=9000, host="0.0.0.0", threaded=True)
