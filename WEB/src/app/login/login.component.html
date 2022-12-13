@@ -1,5 +1,5 @@
+<app-header></app-header>
 <div class="container">
-  <form>
     <div class="mb-3">
       <label  class="form-label">Nombre de Usuario</label>
       <input  type="text" class="form-control" id="NombreUsuario" aria-describedby="emailHelp">
@@ -9,6 +9,5 @@
       <label for="exampleInputPassword1" class="form-label">Contraseña</label>
       <input type="password" class="form-control" id="Contraseña">
     </div>
-  <button type="submit" class="btn btn-primary" id="btnLogin">Logearte</button>
-  </form>
+  <button type="submit" class="btn btn-primary" id="btnLogin" (click)="login()">Logearte</button>
 </div>

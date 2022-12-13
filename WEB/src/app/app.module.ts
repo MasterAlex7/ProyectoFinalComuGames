@@ -11,6 +11,10 @@ import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
 import { RegistrarComponent } from './registrar/registrar.component';
 import { AuthService } from './services/auth.service';
+import { HttpClientModule } from '@angular/common/http';
+import { LogeadoComponent } from './privado/logeado/logeado.component';
+import { HeaderPrivadoComponent } from './privado/header-privado/header-privado.component';
+
 
 @NgModule({
   declarations: [
@@ -20,12 +24,16 @@ import { AuthService } from './services/auth.service';
     MainComponent,
     FooterComponent,
     LoginComponent,
-    RegistrarComponent
+    RegistrarComponent,
+    LogeadoComponent,
+    HeaderPrivadoComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot([
+      {path: 'logeado', component: LogeadoComponent},
       {path: 'login', component: LoginComponent},
       {path: 'registrar', component: RegistrarComponent},
       {path: '', component: MainComponent}
