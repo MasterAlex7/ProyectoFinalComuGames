@@ -1,0 +1,8 @@
+aside{
+    float: left;
+    background-color: black;
+    color: white;
+    overflow: hidden;
+    margin-left: 70%;
+    padding: 1%;
+}

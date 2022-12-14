@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-aside-bar-privado',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AsideBarPrivadoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router : Router) { }
 
   ngOnInit(): void {
+  }
+
+  public Cambiar(){
+    this.router.navigate(['/crear-publicacion']);
   }
 
 }

@@ -12,4 +12,8 @@ export class CrearPublicacionComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public Enviar(){
+    
+  }
+
 }
