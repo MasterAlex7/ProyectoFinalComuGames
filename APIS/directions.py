@@ -1,13 +1,10 @@
 from glob import glob
+import json
 from urllib import request
 from wsgiref.util import request_uri
 from flask import Flask, jsonify, request, url_for, Response
 from flask_cors import CORS, cross_origin
-from datetime import datetime, timezone
-import pytz
-import sys
 import BackEnd.Functions as callMethod
-import BackEnd.GlobalInfo.IOTKeys as globalKeys
 import BackEnd.GlobalInfo.ResponseMessages as globalMessages
 
 app = Flask(__name__)
@@ -47,6 +44,8 @@ def CMRegister():
     except Exception:
         return jsonify(globalMessages.err500)
 
+#Este guarda cosas
+
 @app.route('/api/CGNuevaPubli', methods=['POST'])
 def CMNuevaPubli():
     try:
@@ -56,9 +55,14 @@ def CMNuevaPubli():
         strUser = request.json['strUser']
         strFechaPubli = request.json['strFechaPubli']
         objectResult = callMethod.CMNuevaPubli(strTPubli, strTitulo, strContenido, strUser, strFechaPubli)
+        data=json.dumps(objectResult)
+        my_data_file = open('nfs/idspublicaciones.txt', 'a')
+        my_data_file.write(data)
         return objectResult
     except Exception:
         return jsonify(globalMessages.err500)
+
+#Este tambien guarda cosas
 
 @app.route('/api/CGGetPubli', methods=['GET'])
 def CMGetPubli():
@@ -67,6 +71,24 @@ def CMGetPubli():
         return objectResult
     except Exception:
         return jsonify(globalMessages.err500)
+
+@app.route('/api/CGGetFreeGames', methods=['GET'])
+def CMGetFreeGames():
+    try:
+        objectResult = callMethod.CMGetFreeGames()
+        return objectResult
+    except Exception:
+        return jsonify(globalMessages.err500)
+
+
+@app.route('/api/CGGetGiveaways', methods=['GET'])
+def CMGetGiveaways():
+    try:
+        objectResult = callMethod.CMGetGiveaways()
+        return objectResult
+    except Exception:
+        return jsonify(globalMessages.err500)
+
 
 @app.route('/prueba',methods=['GET'])
 def pruebaget():

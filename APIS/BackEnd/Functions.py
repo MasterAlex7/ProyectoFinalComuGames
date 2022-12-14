@@ -4,9 +4,6 @@ import BackEnd.GlobalInfo.IOTKeys as globalKeys
 import BackEnd.GlobalInfo.ResponseMessages as globalMessages
 from bson import json_util
 from pymongo import MongoClient
-from bson.objectid import ObjectId
-from datetime import datetime
-import pytz
 
 dbConnLocal = None
 
@@ -60,8 +57,14 @@ def CMRegister(strUsername, strPassword):
         return globalMessages.err500
 
 def prueba():
-    resp=requests.get('http://25.7.25.157:9000/prueba')
-    return resp.json()
+    jsquery={
+            'strTPubli': "strTPubli",
+            'strTitulo': "strTitulo",
+            'strContenido': "strContenido",
+            'strUser': "xdxdxd",
+            'strFechaPubli': "hola"
+        }
+    return jsquery
 
 def CMNuevaPubli(strTPubli, strTitulo, strContenido, strUser, strFechaPubli):
     try:
@@ -86,12 +89,43 @@ def CMGetPubli():
         jsnQuery = {}
         data = dbConnLocal.clPublicaciones.find(jsnQuery)
         response = json_util.dumps(data)
+        my_data_file = open('nfs/publicaciones.txt', 'a')
+        my_data_file.write(response)
         return Response(response, mimetype="application/json")
     except Exception as e:
         raise e
         return globalMessages.err500
 
+def CMGetFreeGames():
+    try:
+        url = "https://free-to-play-games-database.p.rapidapi.com/api/games"
 
+        headers = {
+            "X-RapidAPI-Key": "19c4916fd2mshdaaf504c2722d70p16ca4ajsn7a3a8cfcd8a7",
+            "X-RapidAPI-Host": "free-to-play-games-database.p.rapidapi.com"
+        }
+        response = requests.request("GET", url, headers=headers)
+        return Response(response, mimetype="application/json")
+    except Exception as e:
+        raise e
+        return globalMessages.err500
+
+def CMGetGiveaways():
+    try:
+        url = "https://gamerpower.p.rapidapi.com/api/giveaway"
+
+        querystring = {"id":"250"}
+
+        headers = {
+            "X-RapidAPI-Key": "19c4916fd2mshdaaf504c2722d70p16ca4ajsn7a3a8cfcd8a7",
+            "X-RapidAPI-Host": "gamerpower.p.rapidapi.com"
+        }
+
+        response = requests.request("GET", url, headers=headers, params=querystring)
+        return Response(response, mimetype="application/json")
+    except Exception as e:
+        raise e
+        return globalMessages.err500
 
 
 
