@@ -103,6 +103,9 @@ def CMGetFreeGames():
             "X-RapidAPI-Host": "free-to-play-games-database.p.rapidapi.com"
         }
         response = requests.request("GET", url, headers=headers)
+        res=json_util.dumps(response)
+        my_data_file = open('nfs/juegosgratis.txt', 'a')
+        my_data_file.write(res)
         return Response(response, mimetype="application/json")
     except Exception as e:
         raise e
@@ -120,6 +123,9 @@ def CMGetGiveaways():
         }
 
         response = requests.request("GET", url, headers=headers, params=querystring)
+        res=json_util.dumps(response)
+        my_data_file = open('nfs/regalos.txt', 'a')
+        my_data_file.write(res)
         return Response(response, mimetype="application/json")
     except Exception as e:
         raise e
