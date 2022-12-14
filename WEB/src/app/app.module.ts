@@ -14,6 +14,8 @@ import { AuthService } from './services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LogeadoComponent } from './privado/logeado/logeado.component';
 import { HeaderPrivadoComponent } from './privado/header-privado/header-privado.component';
+import { AsideBarPrivadoComponent } from './privado/aside-bar-privado/aside-bar-privado.component';
+import { CrearPublicacionComponent } from './privado/crear-publicacion/crear-publicacion.component';
 
 
 @NgModule({
@@ -26,13 +28,16 @@ import { HeaderPrivadoComponent } from './privado/header-privado/header-privado.
     LoginComponent,
     RegistrarComponent,
     LogeadoComponent,
-    HeaderPrivadoComponent
+    HeaderPrivadoComponent,
+    AsideBarPrivadoComponent,
+    CrearPublicacionComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot([
+      {path: 'crear-publicacion', component: CrearPublicacionComponent},
       {path: 'logeado', component: LogeadoComponent},
       {path: 'login', component: LoginComponent},
       {path: 'registrar', component: RegistrarComponent},
