@@ -66,14 +66,12 @@ def prueba():
         }
     return jsquery
 
-def CMNuevaPubli(strTPubli, strTitulo, strContenido, strUser, strFechaPubli):
+def CMNuevaPubli(strTPubli, strTitulo, strContenido):
     try:
         jsquery={
             'strTPubli': strTPubli,
             'strTitulo': strTitulo,
-            'strContenido': strContenido,
-            'strUser': strUser,
-            'strFechaPubli': strFechaPubli
+            'strContenido': strContenido
         }
         id=dbConnLocal.clPublicaciones.insert_one(jsquery)
         Response = {

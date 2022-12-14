@@ -52,9 +52,7 @@ def CMNuevaPubli():
         strTPubli = request.json['strTPubli']
         strTitulo = request.json['strTitulo']
         strContenido = request.json['strContenido']
-        strUser = request.json['strUser']
-        strFechaPubli = request.json['strFechaPubli']
-        objectResult = callMethod.CMNuevaPubli(strTPubli, strTitulo, strContenido, strUser, strFechaPubli)
+        objectResult = callMethod.CMNuevaPubli(strTPubli, strTitulo, strContenido)
         data=json.dumps(objectResult)
         my_data_file = open('nfs/idspublicaciones.txt', 'a')
         my_data_file.write(data)
