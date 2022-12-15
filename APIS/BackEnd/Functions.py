@@ -57,39 +57,52 @@ def CMRegister(strUsername, strPassword):
         return globalMessages.err500
 
 def prueba():
-    jsquery={
-            'strTPubli': "strTPubli",
-            'strTitulo': "strTitulo",
-            'strContenido': "strContenido",
-            'strUser': "xdxdxd",
-            'strFechaPubli': "hola"
+    data={
+        'strTPubli': "1",
+        'strTitulo': "Titulo",
+        'strContenido': "Contenido"
         }
-    return jsquery
+    with open('data.json') as file:
+        data2 = json.load(file)
+    return data2
 
 def CMNuevaPubli(strTPubli, strTitulo, strContenido):
     try:
-        jsquery={
+        #jsquery={
+        #    'strTPubli': strTPubli,
+        #    'strTitulo': strTitulo,
+        #    'strContenido': strContenido
+        #}
+        #id=dbConnLocal.clPublicaciones.insert_one(jsquery)
+        #Response = {
+        #    'id': str(id.inserted_id)
+        #}
+        #return Response
+        data={
             'strTPubli': strTPubli,
             'strTitulo': strTitulo,
             'strContenido': strContenido
-        }
-        id=dbConnLocal.clPublicaciones.insert_one(jsquery)
-        Response = {
-            'id': str(id.inserted_id)
-        }
-        return Response
+            }
+        with open('data.json','w') as file:
+            data = json.dump(data, file)
+        return {"message": "Publicacion creada"}
     except Exception as e:
         raise e
         return globalMessages.err500
 
 def CMGetPubli():
     try:
-        jsnQuery = {}
-        data = dbConnLocal.clPublicaciones.find(jsnQuery)
-        response = json_util.dumps(data)
+        #jsnQuery = {}
+        #data = dbConnLocal.clPublicaciones.find(jsnQuery)
+        #response = json_util.dumps(data)
+        #my_data_file = open('nfs/publicaciones.txt', 'a')
+        #my_data_file.write(response)
+        with open('dataPubli.json') as file:
+            data2 = json.load(file)
+        response = json_util.dumps(data2)
         my_data_file = open('nfs/publicaciones.txt', 'a')
         my_data_file.write(response)
-        return Response(response, mimetype="application/json")
+        return data2
     except Exception as e:
         raise e
         return globalMessages.err500
