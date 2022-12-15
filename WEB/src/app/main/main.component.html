@@ -2,11 +2,22 @@
 <aside>
     <app-side-bar> </app-side-bar>
 </aside>
-<div class="container">
-    <table class="table table-hover">
-        <tr>
+<div class="container" style="float: right; width: 70%;">
+    <table class="table">
+        <tr class="">
+            <th>
+                <p>Titulo</p>               
+            </th>
+            <th>
+                <p>Descripcion</p>
+            </th>
+        </tr>
+        <tr *ngFor="let item of items">
             <td>
-                <p>Nombre de usuario:</p>               
+                <p>{{item.strTitulo}}</p>
+            </td>
+            <td>
+                <p>{{item.strContenido}}</p>
             </td>
         </tr>
     </table>

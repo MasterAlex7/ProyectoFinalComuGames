@@ -17,4 +17,12 @@ export class AsideBarPrivadoComponent implements OnInit {
     this.router.navigate(['/crear-publicacion']);
   }
 
+  public info_games(){
+    this.router.navigate(['/info-games-privado']);
+  }
+
+  public giveaways(){
+    this.router.navigate(['/givaway-privado']);
+  }
+
 }

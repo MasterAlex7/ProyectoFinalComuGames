@@ -82,6 +82,22 @@ def CMNuevaPubli(strTPubli, strTitulo, strContenido):
         raise e
         return globalMessages.err500
 
+def CMNuevoComentario(strContenido, strUser, idPubli):
+    try:
+        jsquery={
+            'strContenido': strContenido,
+            'strUser': strUser,
+            'idPubli': idPubli
+        }
+        id=dbConnLocal.clComentarios.insert_one(jsquery)
+        Response = {
+            'id': str(id.inserted_id)
+        }
+        return Response
+    except Exception as e:
+        raise e
+        return globalMessages.err500
+
 def CMGetPubli():
     try:
         jsnQuery = {}

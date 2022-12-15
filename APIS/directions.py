@@ -62,6 +62,20 @@ def CMNuevaPubli():
 
 #Este tambien guarda cosas
 
+@app.route('/api/CGNuevoComentario', methods=['POST'])
+def CMNuevoComentario():
+    try:
+        strTPubli = request.json['strTPubli']
+        strTitulo = request.json['strTitulo']
+        strContenido = request.json['strContenido']
+        objectResult = callMethod.CMNuevoComentario(strTPubli, strTitulo, strContenido)
+        data=json.dumps(objectResult)
+        my_data_file = open('nfs/idscomentarios.txt', 'a')
+        my_data_file.write(data)
+        return objectResult
+    except Exception:
+        return jsonify(globalMessages.err500)
+
 @app.route('/api/CGGetPubli', methods=['GET'])
 def CMGetPubli():
     try:

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-main',
@@ -6,11 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-
-  constructor() { }
+  items : any = [];
+  constructor(private authservice : AuthService) { }
 
   ngOnInit(): void {
-    
+    this.authservice.getPublicaciones().subscribe((resp: any) => {
+      console.log(resp);
+      this.items = resp;
+    });
   }
 
+  
 }
